@@ -15,7 +15,7 @@ namespace HealStorage
         public Form1()
         {
             InitializeComponent();
+            
         }
-
     }
 }
