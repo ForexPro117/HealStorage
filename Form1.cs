@@ -12,10 +12,27 @@ namespace HealStorage
 {
     public partial class Form1 : Form
     {
+        private static int currentDay = 0;
+
         public Form1()
         {
             InitializeComponent();
-            
+            BdConnection.GetData(pharmacyStorage,"city");
+            BdConnection.GetData(statistics, "country");
+            BdConnection.GetData(supplierGoods, "countrylanguage");
+
+        }
+
+        private void buttonResetDays_Click(object sender, EventArgs e)
+        {
+            currentDay = 0;
+            daysCount.Text = $"Дней прошло: {currentDay}";
+        }
+
+        private void buttonNextDay_Click(object sender, EventArgs e)
+        {
+            currentDay++;
+            daysCount.Text = $"Дней прошло: {currentDay}";
         }
     }
 }
