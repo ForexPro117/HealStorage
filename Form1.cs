@@ -21,6 +21,7 @@ namespace HealStorage
             BdConnection.GetData(statistics, "country");
             BdConnection.GetData(supplierGoods, "countrylanguage");
 
+
         }
 
         private void buttonResetDays_Click(object sender, EventArgs e)
