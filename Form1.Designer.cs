@@ -30,27 +30,27 @@ namespace HealStorage
         private void InitializeComponent()
         {
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.statistics = new System.Windows.Forms.DataGridView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pharmacyStorage = new System.Windows.Forms.DataGridView();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.supplierGoods = new System.Windows.Forms.DataGridView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.daysCount = new System.Windows.Forms.Label();
             this.buttonResetDays = new System.Windows.Forms.Button();
             this.buttonNextDay = new System.Windows.Forms.Button();
-            this.statistics = new System.Windows.Forms.DataGridView();
-            this.supplierGoods = new System.Windows.Forms.DataGridView();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.statistics)).BeginInit();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pharmacyStorage)).BeginInit();
             this.tabControl.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.supplierGoods)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.statistics)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.supplierGoods)).BeginInit();
             this.SuspendLayout();
             // 
             // tabPage2
@@ -63,6 +63,16 @@ namespace HealStorage
             this.tabPage2.TabIndex = 2;
             this.tabPage2.Text = "Сводка купли-продаж";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // statistics
+            // 
+            this.statistics.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.statistics.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.statistics.Location = new System.Drawing.Point(3, 3);
+            this.statistics.Name = "statistics";
+            this.statistics.RowTemplate.Height = 25;
+            this.statistics.Size = new System.Drawing.Size(662, 458);
+            this.statistics.TabIndex = 0;
             // 
             // tabPage1
             // 
@@ -84,6 +94,7 @@ namespace HealStorage
             this.pharmacyStorage.RowTemplate.Height = 25;
             this.pharmacyStorage.Size = new System.Drawing.Size(662, 458);
             this.pharmacyStorage.TabIndex = 0;
+            this.pharmacyStorage.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.pharmacyStorage_CellEndEdit);
             // 
             // tabControl
             // 
@@ -111,6 +122,16 @@ namespace HealStorage
             this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "Данные о таварах поставщиков";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // supplierGoods
+            // 
+            this.supplierGoods.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.supplierGoods.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.supplierGoods.Location = new System.Drawing.Point(3, 3);
+            this.supplierGoods.Name = "supplierGoods";
+            this.supplierGoods.RowTemplate.Height = 25;
+            this.supplierGoods.Size = new System.Drawing.Size(662, 458);
+            this.supplierGoods.TabIndex = 0;
             // 
             // splitContainer1
             // 
@@ -167,26 +188,6 @@ namespace HealStorage
             this.buttonNextDay.UseVisualStyleBackColor = true;
             this.buttonNextDay.Click += new System.EventHandler(this.buttonNextDay_Click);
             // 
-            // statistics
-            // 
-            this.statistics.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.statistics.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.statistics.Location = new System.Drawing.Point(3, 3);
-            this.statistics.Name = "statistics";
-            this.statistics.RowTemplate.Height = 25;
-            this.statistics.Size = new System.Drawing.Size(662, 458);
-            this.statistics.TabIndex = 0;
-            // 
-            // supplierGoods
-            // 
-            this.supplierGoods.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.supplierGoods.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.supplierGoods.Location = new System.Drawing.Point(3, 3);
-            this.supplierGoods.Name = "supplierGoods";
-            this.supplierGoods.RowTemplate.Height = 25;
-            this.supplierGoods.Size = new System.Drawing.Size(662, 458);
-            this.supplierGoods.TabIndex = 0;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -197,17 +198,17 @@ namespace HealStorage
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Heal Storage";
             this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.statistics)).EndInit();
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pharmacyStorage)).EndInit();
             this.tabControl.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.supplierGoods)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.statistics)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.supplierGoods)).EndInit();
             this.ResumeLayout(false);
 
         }
