@@ -38,5 +38,31 @@ namespace HealStorage
             }
 
         }
+        public static void GetDataSQL(DataGridView dataGrid, string sqlQerry)
+        {
+            string conectUrl = "server=localhost;user=root;database=bd;password=";
+            MySqlConnection conn = new MySqlConnection(conectUrl);
+            try
+            {
+                conn.Open();
+                MySqlDataAdapter adapter = new MySqlDataAdapter(sqlQerry, conn);
+                DataTable table = new DataTable();
+                adapter.Fill(table);
+                dataGrid.DataSource = table;
+
+            }
+            catch (Exception e)
+            {
+
+                MessageBox.Show("Что-то пошло не так", e.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+
+        }
     }
 }
