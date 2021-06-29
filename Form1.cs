@@ -17,14 +17,21 @@ namespace HealStorage
         public Form1()
         {
             InitializeComponent();
-            BdConnection.GetDataSQL(pharmacyStorage,
+            try
+            {
+                BdConnection.GetDataSQL(pharmacyStorage,
                 "select Product as `Продукт`," +
                 "round(RAND()*(200)) as 'Цена за единицу'," +
                 "count(Product) as 'шт',min(ExpirationDate)" +
                 "  as 'Срок годности' from pharmitem group by Product");
-            BdConnection.GetData(statistics, "pharmitem");
-            BdConnection.GetData(supplierGoods, "supplieritem");
-            BdConnection.GetData(itemInfo, "products");
+                BdConnection.GetData(statistics, "pharmitem");
+                BdConnection.GetData(supplierGoods, "supplieritem");
+                BdConnection.GetData(itemInfo, "products");
+            }
+            catch (Exception)
+            {
+
+            }
 
 
         }

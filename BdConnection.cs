@@ -31,7 +31,7 @@ namespace HealStorage
             {
 
                 MessageBox.Show("Что-то пошло не так", e.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                
+                throw;
             }
             finally
             {
@@ -57,6 +57,7 @@ namespace HealStorage
             {
 
                 MessageBox.Show("Что-то пошло не так", e.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw;
 
             }
             finally
