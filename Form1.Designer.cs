@@ -98,6 +98,7 @@ namespace HealStorage
             this.pharmacyStorage.RowTemplate.Height = 25;
             this.pharmacyStorage.Size = new System.Drawing.Size(662, 458);
             this.pharmacyStorage.TabIndex = 0;
+            this.pharmacyStorage.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.pharmacyStorage_CellEndEdit);
             // 
             // tabControl
             // 

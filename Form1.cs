@@ -40,5 +40,10 @@ namespace HealStorage
             currentDay++;
             daysCount.Text = $"Дней прошло: {currentDay}";
         }
+//пока делает хрень, но потом будет нужна для регулировки таблицы
+        private void pharmacyStorage_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            daysCount.Text = $"Дней прошло: {100}";
+        }
     }
 }

@@ -14,11 +14,13 @@ namespace HealStorage
     {
         public static void GetData(DataGridView dataGrid,string tableName)
         {
-            string conectUrl = "server=localhost;user=root;database=bd;password=";
+            //Имя Базы данных - bd, пороля нет(в моем случае)
+            string conectUrl = "server=localhost;user id=root;database=bd;allowuservariables=True;persistsecurityinfo=True";
             MySqlConnection conn = new MySqlConnection(conectUrl);
             try
             {
                 conn.Open();
+                //Реализация запросов к бд
                 MySqlDataAdapter adapter = new MySqlDataAdapter($"SELECT * from {tableName}", conn);
                 DataTable table = new DataTable();
                 adapter.Fill(table);
