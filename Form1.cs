@@ -19,6 +19,7 @@ namespace HealStorage
             InitializeComponent();
             try
             {
+                BdConnection.SetStartupParams();
                 BdConnection.GetDataSQL(pharmacyStorage,
                 "select Product as `Продукт`," +
                 "round(RAND()*(200)) as 'Цена за единицу'," +
@@ -27,6 +28,7 @@ namespace HealStorage
                 BdConnection.GetData(statistics, "pharmitem");
                 BdConnection.GetData(supplierGoods, "supplieritem");
                 BdConnection.GetData(itemInfo, "products");
+
             }
             catch (Exception)
             {
@@ -44,17 +46,17 @@ namespace HealStorage
 
         private void buttonNextDay_Click(object sender, EventArgs e)
         {
-            if (dayTimeInfo.Text=="Конец дня")
+            if (dayTimeInfo.Text == "Конец дня")//фаза закупки товара
             {
                 currentDay++;
                 daysCount.Text = $"Дней прошло: {currentDay}";
 
                 dayTimeInfo.Text = "Начало дня";
             }
-            else
+            else//фаза продажи товара
             {
-
-
+                Automatization.BuyItemCustomer((DataTable)statistics.DataSource,richTextBox1);
+                
                 dayTimeInfo.Text = "Конец дня";
             }
         }

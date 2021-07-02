@@ -188,14 +188,17 @@ namespace HealStorage
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(12, 163);
+            this.richTextBox1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.richTextBox1.Location = new System.Drawing.Point(0, 163);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(127, 155);
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.Size = new System.Drawing.Size(151, 205);
             this.richTextBox1.TabIndex = 6;
-            this.richTextBox1.Text = "nen";
+            this.richTextBox1.Text = "пусто";
             // 
             // tableUpdate
             // 
+            this.tableUpdate.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.tableUpdate.Location = new System.Drawing.Point(12, 430);
             this.tableUpdate.Name = "tableUpdate";
             this.tableUpdate.Size = new System.Drawing.Size(127, 23);
@@ -230,6 +233,7 @@ namespace HealStorage
             // 
             // buttonResetDays
             // 
+            this.buttonResetDays.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonResetDays.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.buttonResetDays.Location = new System.Drawing.Point(37, 66);
             this.buttonResetDays.Name = "buttonResetDays";
@@ -241,6 +245,7 @@ namespace HealStorage
             // 
             // buttonNextDay
             // 
+            this.buttonNextDay.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonNextDay.Location = new System.Drawing.Point(86, 66);
             this.buttonNextDay.Name = "buttonNextDay";
             this.buttonNextDay.Size = new System.Drawing.Size(24, 23);
@@ -292,7 +297,7 @@ namespace HealStorage
         private System.Windows.Forms.DataGridView itemInfo;
         private System.Windows.Forms.Label dayTimeInfo;
         private System.Windows.Forms.Button tableUpdate;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        public System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
 
