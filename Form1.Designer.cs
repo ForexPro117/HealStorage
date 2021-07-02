@@ -189,10 +189,10 @@ namespace HealStorage
             // richTextBox1
             // 
             this.richTextBox1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.richTextBox1.Location = new System.Drawing.Point(0, 163);
+            this.richTextBox1.Location = new System.Drawing.Point(0, 118);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(151, 205);
+            this.richTextBox1.Size = new System.Drawing.Size(151, 250);
             this.richTextBox1.TabIndex = 6;
             this.richTextBox1.Text = "пусто";
             // 

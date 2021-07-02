@@ -13,7 +13,7 @@ namespace HealStorage
         public static void BuyItemCustomer(DataTable sourceTable, RichTextBox textBox)
         {
             Dictionary<string, int> item = new Dictionary<string, int>();
-            textBox.Text = "Cегодня купили:\n";
+            textBox.Text = "Cегодня купили:\n\n";
             Random rd = new Random();
             var a = 0;
             for (int i = 0; i < sourceTable.Rows.Count; i++)
@@ -31,7 +31,8 @@ namespace HealStorage
 
                 }
             }
-            foreach (var text in item)
+            var sortedDict=item.Select(item => item).OrderBy(item=>item.Key);
+            foreach (var text in sortedDict)
             {
                 textBox.Text += text.Key+": "+text.Value+"шт" + "\n";
             }
