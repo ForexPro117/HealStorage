@@ -44,13 +44,38 @@ namespace HealStorage
 
         private void buttonNextDay_Click(object sender, EventArgs e)
         {
-            currentDay++;
-            daysCount.Text = $"Дней прошло: {currentDay}";
+            if (dayTimeInfo.Text=="Конец дня")
+            {
+                currentDay++;
+                daysCount.Text = $"Дней прошло: {currentDay}";
+
+                dayTimeInfo.Text = "Начало дня";
+            }
+            else
+            {
+
+
+                dayTimeInfo.Text = "Конец дня";
+            }
         }
-//пока делает хрень, но потом будет нужна для регулировки таблицы
-        private void pharmacyStorage_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+
+        private void tableUpdate_Click(object sender, EventArgs e)
         {
-            daysCount.Text = $"Дней прошло: {100}";
+            try
+            {
+                BdConnection.GetDataSQL(pharmacyStorage,
+                "select Product as `Продукт`," +
+                "round(RAND()*(200)) as 'Цена за единицу'," +
+                "count(Product) as 'шт',min(ExpirationDate)" +
+                "  as 'Срок годности' from pharmitem group by Product");
+                BdConnection.GetData(statistics, "pharmitem");
+                BdConnection.GetData(supplierGoods, "supplieritem");
+                BdConnection.GetData(itemInfo, "products");
+            }
+            catch (Exception)
+            {
+
+            }
         }
     }
 }
