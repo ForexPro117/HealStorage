@@ -1,23 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HealStorage
 {
     public partial class Form1 : Form
     {
-        private static int currentDay = 0;
+        internal static int currentDay = 0;
 
         public Form1()
         {
             InitializeComponent();
-            BdConnection.SetStartupParams();
+           // BdConnection.SetStartupParams();
             GetDataTable();
 
         }
@@ -56,20 +50,20 @@ namespace HealStorage
         {
             if (dayTimeInfo.Text == "Конец дня")//фаза закупки товара
             {
+                Automatization.supplyingItem((DataTable)pharmacyStorage.DataSource);
                 currentDay++;
                 daysCount.Text = $"Дней прошло: {currentDay}";
-
                 dayTimeInfo.Text = "Начало дня";
             }
             else//фаза продажи товара
             {
-                Automatization.BuyItemCustomer((DataTable)statistics.DataSource,richTextBox1);
-              
+                Automatization.BuyItemCustomer((DataTable)statistics.DataSource, richTextBox1);
+
                 dayTimeInfo.Text = "Конец дня";
             }
         }
 
-           
+
         private void tableUpdate_Click(object sender, EventArgs e)
         {
             GetDataTable();
