@@ -17,25 +17,33 @@ namespace HealStorage
         public Form1()
         {
             InitializeComponent();
+            BdConnection.SetStartupParams();
+            GetDataTable();
+
+        }
+
+        private void GetDataTable()
+        {
             try
             {
-                BdConnection.SetStartupParams();
                 BdConnection.GetDataSQL(pharmacyStorage,
                 "select Product as `Продукт`," +
                 "round(RAND()*(200)) as 'Цена за единицу'," +
-                "count(Product) as 'шт',min(ExpirationDate)" +
+                "count(Product) as 'Количество',min(ExpirationDate)" +
                 "  as 'Срок годности' from pharmitem group by Product");
-                BdConnection.GetData(statistics, "pharmitem");
-                BdConnection.GetData(supplierGoods, "supplieritem");
-                BdConnection.GetData(itemInfo, "products");
+                BdConnection.GetDataSQL(statistics, "SELECT ID,Product as 'Продукт'," +
+                    "ExpirationDate as 'Срок годности' FROM `pharmitem`");
+                BdConnection.GetDataSQL(supplierGoods, "SELECT ID,SupName AS 'Поставщик'," +
+                    "ProductID,SupProduct as 'Поставлямый продукт',SupPrice AS 'Цена продукта'," +
+                    "DeliveryDistance AS 'Стоймость доставки' FROM `supplieritem`");
+                BdConnection.GetDataSQL(itemInfo, "SELECT ID,ProductName as 'Название продукта'," +
+                    "Packaging as 'В 1 шт',InThePackage as 'Кол-во в упаковке' FROM `products`");
 
             }
             catch (Exception)
             {
 
             }
-
-
         }
 
         private void buttonResetDays_Click(object sender, EventArgs e)
@@ -56,28 +64,15 @@ namespace HealStorage
             else//фаза продажи товара
             {
                 Automatization.BuyItemCustomer((DataTable)statistics.DataSource,richTextBox1);
-                
+              
                 dayTimeInfo.Text = "Конец дня";
             }
         }
 
+           
         private void tableUpdate_Click(object sender, EventArgs e)
         {
-            try
-            {
-                BdConnection.GetDataSQL(pharmacyStorage,
-                "select Product as `Продукт`," +
-                "round(RAND()*(200)) as 'Цена за единицу'," +
-                "count(Product) as 'шт',min(ExpirationDate)" +
-                "  as 'Срок годности' from pharmitem group by Product");
-                BdConnection.GetData(statistics, "pharmitem");
-                BdConnection.GetData(supplierGoods, "supplieritem");
-                BdConnection.GetData(itemInfo, "products");
-            }
-            catch (Exception)
-            {
-
-            }
+            GetDataTable();
         }
     }
 }
