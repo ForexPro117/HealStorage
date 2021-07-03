@@ -50,7 +50,7 @@ namespace HealStorage
         {
             if (dayTimeInfo.Text == "Конец дня")//фаза закупки товара
             {
-                Automatization.supplyingItem((DataTable)pharmacyStorage.DataSource);
+                Automatization.supplyingItem();
                 currentDay++;
                 daysCount.Text = $"Дней прошло: {currentDay}";
                 dayTimeInfo.Text = "Начало дня";
