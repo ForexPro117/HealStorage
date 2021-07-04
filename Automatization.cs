@@ -40,15 +40,10 @@ namespace HealStorage
 
         internal static void supplyingItem()
         {
-            //var tableTime = BdConnection.GetDataInTable("SELECT min(ExpirationDate) FROM pharmitem")
-            //      .Rows[0].ItemArray[0].ToString();
-            //string today = (DateTime.Today).AddDays(Form1.currentDay).ToString();
 
-            //if (today == tableTime)//если на складе есть товар с истекающим сроком годности удаляем его
-            //{
-               var today = (DateTime.Today).AddDays(Form1.currentDay).ToString("yyyy-MM-dd");
-                BdConnection.ExecuteScript($"DELETE FROM pharmitem WHERE ExpirationDate='{today}'");
-            //}
+            var today = (DateTime.Today).AddDays(Form1.currentDay).ToString("yyyy-MM-dd");
+            BdConnection.ExecuteScript($"DELETE FROM pharmitem WHERE ExpirationDate='{today}'");
+
             var itemCountTable = BdConnection.GetDataInTable("select Product as `Продукт`," +
                 "count(Product) as 'Количество'from pharmitem group by Product");
 
@@ -72,9 +67,20 @@ namespace HealStorage
                                 goodPrice = Convert.ToInt32(prod.ItemArray[4]) * (50 - itemCount) + Convert.ToInt32(prod.ItemArray[5]);
                             }
                     }
-                    for (int i = 0; i < 70 - itemCount; i++)
+
+                    int requiredAmount = 50;
+                    if (Automatization.item.ContainsKey(rowCount.ItemArray[0].ToString()))
                     {
-                        BdConnection.ExecuteScript(@$"INSERT INTO `pharmitem`(`Product`, `ExpirationDate`) SELECT SupProduct,date_add(NOW(),interval {Form1.currentDay+rd.Next(5,15)} day) FROM supplieritem WHERE ID={id};");
+                        var saleProducts = Automatization.item[rowCount.ItemArray[0].ToString()];
+                        if (saleProducts > 12)
+                            requiredAmount = 80;
+                        else if (saleProducts > 7)
+                            requiredAmount = 65;
+                    }
+
+                    for (int i = 0; i < requiredAmount - itemCount; i++)
+                    {
+                        BdConnection.ExecuteScript(@$"INSERT INTO `pharmitem`(`Product`, `ExpirationDate`) SELECT SupProduct,date_add(NOW(),interval {Form1.currentDay + rd.Next(5, 15)} day) FROM supplieritem WHERE ID={id};");
                     }
                 }
 
