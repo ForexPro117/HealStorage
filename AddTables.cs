@@ -573,7 +573,7 @@ INSERT INTO `pharmitem` (`ID`, `Product`, `ExpirationDate`) VALUES
 (560, 'Antitussive tablets', '2021-07-13'),
 (561, 'Potassium permanganate', '2021-07-13');
 update pharmitem
-set ExpirationDate=date_add(NOW(),interval round(rand()*(10-2)+2) day);
+set ExpirationDate=date_add(NOW(),interval round(rand()*(15-1)+1) day);
 create table products
 (
     ID           int(11) auto_increment,

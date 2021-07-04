@@ -42,6 +42,9 @@ namespace HealStorage
 
         private void buttonResetDays_Click(object sender, EventArgs e)
         {
+            BdConnection.ExecuteScript(AddTables.tableData);
+            GetDataTable();
+            richTextBox1.Text = "Симуляция была сброшена";
             currentDay = 0;
             daysCount.Text = $"Дней прошло: {currentDay}";
         }
@@ -51,6 +54,7 @@ namespace HealStorage
             if (dayTimeInfo.Text == "Фаза закупки")//фаза закупки товара
             {
                 Automatization.supplyingItem();
+                richTextBox1.Text = "Идет закупка товара...";
                 currentDay++;
                 daysCount.Text = $"Дней прошло: {currentDay}";
                 dayTimeInfo.Text = "Фаза продажи";

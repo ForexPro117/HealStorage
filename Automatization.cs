@@ -18,7 +18,7 @@ namespace HealStorage
             {
                 if (rd.Next(100) > 70)
                 {
-                    //добавить удаление из бд
+                    BdConnection.ExecuteScript($"DELETE FROM pharmitem WHERE ID={i}");
                     var key = sourceTable.Rows[i].ItemArray[1].ToString();
                     if (item.ContainsKey(key))
                     {
@@ -40,15 +40,15 @@ namespace HealStorage
 
         internal static void supplyingItem()
         {
-            var tableTime = BdConnection.GetDataInTable("SELECT min(ExpirationDate) FROM pharmitem")
-                  .Rows[0].ItemArray[0].ToString();
-            string today = (DateTime.Today).AddDays(Form1.currentDay).ToString();
+            //var tableTime = BdConnection.GetDataInTable("SELECT min(ExpirationDate) FROM pharmitem")
+            //      .Rows[0].ItemArray[0].ToString();
+            //string today = (DateTime.Today).AddDays(Form1.currentDay).ToString();
 
-            if (today == tableTime)//если на складе есть товар с истекающим сроком годности удаляем его
-            {
-                today = (DateTime.Today).AddDays(Form1.currentDay).ToString("yyyy-MM-dd");
+            //if (today == tableTime)//если на складе есть товар с истекающим сроком годности удаляем его
+            //{
+               var today = (DateTime.Today).AddDays(Form1.currentDay).ToString("yyyy-MM-dd");
                 BdConnection.ExecuteScript($"DELETE FROM pharmitem WHERE ExpirationDate='{today}'");
-            }
+            //}
             var itemCountTable = BdConnection.GetDataInTable("select Product as `Продукт`," +
                 "count(Product) as 'Количество'from pharmitem group by Product");
 
@@ -56,7 +56,8 @@ namespace HealStorage
             {
                 var rowCount = row as DataRow;
                 var itemCount = Convert.ToInt32(rowCount.ItemArray[1]);
-                if (itemCount < 15)//надо добавить товар от поставщика к складу по выгодной цене
+                Random rd = new Random();
+                if (itemCount < 20)//надо добавить товар от поставщика к складу по выгодной цене
                 {
                     var supItemTable = BdConnection.GetDataInTable("SELECT * FROM supplieritem order by SupProduct");
                     int goodPrice = int.MaxValue;
@@ -71,9 +72,9 @@ namespace HealStorage
                                 goodPrice = Convert.ToInt32(prod.ItemArray[4]) * (50 - itemCount) + Convert.ToInt32(prod.ItemArray[5]);
                             }
                     }
-                    for (int i = 0; i < 50 - itemCount; i++)
+                    for (int i = 0; i < 70 - itemCount; i++)
                     {
-                        BdConnection.ExecuteScript(@$"INSERT INTO `pharmitem`(`Product`, `ExpirationDate`) SELECT SupProduct,date_add(NOW(),interval round(rand()*(10-3-{Form1.currentDay})+3+{Form1.currentDay}) day) FROM supplieritem WHERE ID={id};");
+                        BdConnection.ExecuteScript(@$"INSERT INTO `pharmitem`(`Product`, `ExpirationDate`) SELECT SupProduct,date_add(NOW(),interval {Form1.currentDay+rd.Next(5,15)} day) FROM supplieritem WHERE ID={id};");
                     }
                 }
 

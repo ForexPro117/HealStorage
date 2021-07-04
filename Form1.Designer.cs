@@ -194,11 +194,12 @@ namespace HealStorage
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.Size = new System.Drawing.Size(151, 250);
             this.richTextBox1.TabIndex = 6;
-            this.richTextBox1.Text = "пусто";
+            this.richTextBox1.Text = "Начните симуляцию, нажав кнопку со стрелкой.\n\n\nНажмите кнопку обновить, для сброс" +
+    "а текущей симуляции.\n\n";
             // 
             // tableUpdate
             // 
-            this.tableUpdate.Cursor = System.Windows.Forms.Cursors.WaitCursor;
+            this.tableUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tableUpdate.Location = new System.Drawing.Point(12, 430);
             this.tableUpdate.Name = "tableUpdate";
             this.tableUpdate.Size = new System.Drawing.Size(127, 23);
@@ -212,7 +213,7 @@ namespace HealStorage
             this.dayTimeInfo.AutoSize = true;
             this.dayTimeInfo.BackColor = System.Drawing.Color.Gainsboro;
             this.dayTimeInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.dayTimeInfo.Location = new System.Drawing.Point(37, 46);
+            this.dayTimeInfo.Location = new System.Drawing.Point(30, 46);
             this.dayTimeInfo.Name = "dayTimeInfo";
             this.dayTimeInfo.Size = new System.Drawing.Size(87, 17);
             this.dayTimeInfo.TabIndex = 4;
@@ -224,7 +225,7 @@ namespace HealStorage
             this.daysCount.AutoSize = true;
             this.daysCount.BackColor = System.Drawing.Color.Gainsboro;
             this.daysCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.daysCount.Location = new System.Drawing.Point(23, 18);
+            this.daysCount.Location = new System.Drawing.Point(25, 18);
             this.daysCount.Name = "daysCount";
             this.daysCount.Size = new System.Drawing.Size(98, 17);
             this.daysCount.TabIndex = 3;
