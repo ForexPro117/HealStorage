@@ -54,27 +54,29 @@ namespace HealStorage
 
             foreach (var row in itemCountTable.Rows)//получение ко-во ост товаров на складе одного названия
             {
-                var itemCount = Convert.ToInt32((row as DataRow).ItemArray[1]);
+                var rowCount = row as DataRow;
+                var itemCount = Convert.ToInt32(rowCount.ItemArray[1]);
                 if (itemCount < 15)//надо добавить товар от поставщика к складу по выгодной цене
                 {
-                    var supItemTable = BdConnection.GetDataInTable("SELECT * FROM supplieritem");
+                    var supItemTable = BdConnection.GetDataInTable("SELECT * FROM supplieritem order by SupProduct");
                     int goodPrice = int.MaxValue;
                     int id = 0;
                     foreach (var product in supItemTable.Rows)
                     {
                         var prod = product as DataRow;
-                        if (prod.ItemArray[3] == prod.ItemArray[0])
+                        if (prod.ItemArray[3].ToString().ToLower() == rowCount.ItemArray[0].ToString().ToLower())
                             if (Convert.ToInt32(prod.ItemArray[4]) * (50 - itemCount) + Convert.ToInt32(prod.ItemArray[5]) < goodPrice)
                             {
                                 id = Convert.ToInt32(prod.ItemArray[0]);
                                 goodPrice = Convert.ToInt32(prod.ItemArray[4]) * (50 - itemCount) + Convert.ToInt32(prod.ItemArray[5]);
                             }
                     }
+                    for (int i = 0; i < 50 - itemCount; i++)
+                    {
+                        BdConnection.ExecuteScript(@$"INSERT INTO `pharmitem`(`Product`, `ExpirationDate`) SELECT SupProduct,date_add(NOW(),interval round(rand()*(10-3-{Form1.currentDay})+3+{Form1.currentDay}) day) FROM supplieritem WHERE ID={id};");
+                    }
                 }
-                for (int i = 0; i < 50-itemCount; i++)
-                {
 
-                }
             }
         }
     }

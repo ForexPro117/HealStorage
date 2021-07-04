@@ -54,12 +54,14 @@ namespace HealStorage
                 currentDay++;
                 daysCount.Text = $"Дней прошло: {currentDay}";
                 dayTimeInfo.Text = "Фаза продажи";
+                GetDataTable();
             }
             else//фаза продажи товара
             {
                 Automatization.BuyItemCustomer((DataTable)statistics.DataSource, richTextBox1);
 
                 dayTimeInfo.Text = "Фаза закупки";
+                GetDataTable();
             }
         }
 
