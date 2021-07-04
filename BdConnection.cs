@@ -12,7 +12,7 @@ namespace HealStorage
     //Здесь получаем данные из бд
     class BdConnection
     {
-        
+
         public static void GetDataSQL(DataGridView dataGrid, string sqlQerry)
         {
             string conectUrl = "server=localhost;user=root;database=bd;password=";
@@ -40,14 +40,14 @@ namespace HealStorage
             }
 
         }
-        public static void SetStartupParams()
+        public static void ExecuteScript(string script)
         {
             string conectUrl = "server=localhost;user=root;database=bd;password=";
             MySqlConnection conn = new MySqlConnection(conectUrl);
             try
             {
                 conn.Open();
-                var cmd = new MySqlCommand("update pharmitem set ExpirationDate = date_add(NOW(), interval round(rand() * (10 - 2) + 2) day)", conn);
+                var cmd = new MySqlCommand(script, conn);
                 cmd.ExecuteNonQuery();
 
             }
@@ -64,14 +64,14 @@ namespace HealStorage
                 conn.Dispose();
             }
         }
-        public static void ExecuteScript(string script)
+        public static void SetStartupParams()
         {
             string conectUrl = "server=localhost;user=root;database=bd;password=";
             MySqlConnection conn = new MySqlConnection(conectUrl);
             try
             {
                 conn.Open();
-                var cmd = new MySqlCommand(script, conn);
+                var cmd = new MySqlCommand(AddTables.tableData, conn);
                 cmd.ExecuteNonQuery();
 
             }

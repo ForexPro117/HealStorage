@@ -11,7 +11,7 @@ namespace HealStorage
         public Form1()
         {
             InitializeComponent();
-           // BdConnection.SetStartupParams();
+            BdConnection.SetStartupParams();
             GetDataTable();
 
         }
@@ -48,18 +48,18 @@ namespace HealStorage
 
         private void buttonNextDay_Click(object sender, EventArgs e)
         {
-            if (dayTimeInfo.Text == "Конец дня")//фаза закупки товара
+            if (dayTimeInfo.Text == "Фаза закупки")//фаза закупки товара
             {
                 Automatization.supplyingItem();
                 currentDay++;
                 daysCount.Text = $"Дней прошло: {currentDay}";
-                dayTimeInfo.Text = "Начало дня";
+                dayTimeInfo.Text = "Фаза продажи";
             }
             else//фаза продажи товара
             {
                 Automatization.BuyItemCustomer((DataTable)statistics.DataSource, richTextBox1);
 
-                dayTimeInfo.Text = "Конец дня";
+                dayTimeInfo.Text = "Фаза закупки";
             }
         }
 

@@ -214,9 +214,9 @@ namespace HealStorage
             this.dayTimeInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.dayTimeInfo.Location = new System.Drawing.Point(37, 46);
             this.dayTimeInfo.Name = "dayTimeInfo";
-            this.dayTimeInfo.Size = new System.Drawing.Size(73, 17);
+            this.dayTimeInfo.Size = new System.Drawing.Size(87, 17);
             this.dayTimeInfo.TabIndex = 4;
-            this.dayTimeInfo.Text = "Начало дня";
+            this.dayTimeInfo.Text = "Фаза продажи";
             this.dayTimeInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // daysCount
