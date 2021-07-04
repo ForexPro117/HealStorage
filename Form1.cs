@@ -45,7 +45,7 @@ namespace HealStorage
             BdConnection.ExecuteScript(AddTables.tableData);
             GetDataTable();
             richTextBox1.Text = "Симуляция была сброшена";
-            dayTimeInfo.Text = "Далее: фаза закупки";
+            dayTimeInfo.Text = "Далее: фаза продажи";
             currentDay = 0;
             daysCount.Text = $"Дней прошло: {currentDay}";
         }
