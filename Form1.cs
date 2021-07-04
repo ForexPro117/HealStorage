@@ -45,26 +45,26 @@ namespace HealStorage
             BdConnection.ExecuteScript(AddTables.tableData);
             GetDataTable();
             richTextBox1.Text = "Симуляция была сброшена";
+            dayTimeInfo.Text = "Далее: фаза закупки";
             currentDay = 0;
             daysCount.Text = $"Дней прошло: {currentDay}";
         }
 
         private void buttonNextDay_Click(object sender, EventArgs e)
         {
-            if (dayTimeInfo.Text == "Фаза закупки")//фаза закупки товара
+            if (dayTimeInfo.Text == "Далее: фаза закупки")//фаза закупки товара
             {
                 Automatization.supplyingItem();
                 richTextBox1.Text = "Идет закупка товара...";
                 currentDay++;
                 daysCount.Text = $"Дней прошло: {currentDay}";
-                dayTimeInfo.Text = "Фаза продажи";
+                dayTimeInfo.Text = "Далее: фаза продажи";
                 GetDataTable();
             }
             else//фаза продажи товара
             {
                 Automatization.BuyItemCustomer((DataTable)statistics.DataSource, richTextBox1);
-
-                dayTimeInfo.Text = "Фаза закупки";
+                dayTimeInfo.Text = "Далее: фаза закупки";
                 GetDataTable();
             }
         }

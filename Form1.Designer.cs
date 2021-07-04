@@ -213,11 +213,11 @@ namespace HealStorage
             this.dayTimeInfo.AutoSize = true;
             this.dayTimeInfo.BackColor = System.Drawing.Color.Gainsboro;
             this.dayTimeInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.dayTimeInfo.Location = new System.Drawing.Point(30, 46);
+            this.dayTimeInfo.Location = new System.Drawing.Point(12, 46);
             this.dayTimeInfo.Name = "dayTimeInfo";
-            this.dayTimeInfo.Size = new System.Drawing.Size(87, 17);
+            this.dayTimeInfo.Size = new System.Drawing.Size(126, 17);
             this.dayTimeInfo.TabIndex = 4;
-            this.dayTimeInfo.Text = "Фаза продажи";
+            this.dayTimeInfo.Text = "Далее: фаза продажи";
             this.dayTimeInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // daysCount
